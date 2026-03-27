@@ -1,0 +1,18 @@
+{
+  "name": "pixel",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm --workspace @pixel/shared run build && npm --workspace @pixel/ai-adapter run build && npm --workspace @pixel/server run build && npm --workspace @pixel/client run build",
+    "dev:client": "npm --workspace @pixel/shared run build && npm --workspace @pixel/client run dev",
+    "dev:server": "npm --workspace @pixel/shared run build && npm --workspace @pixel/ai-adapter run build && npm --workspace @pixel/server run dev",
+    "typecheck": "npm --workspace @pixel/shared run build && npm --workspace @pixel/ai-adapter run build && npm --workspace @pixel/server run typecheck && npm --workspace @pixel/client run typecheck"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
