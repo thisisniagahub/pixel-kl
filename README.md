@@ -58,6 +58,7 @@ http://localhost:2567/health
 - `npm run dev:client` builds shared code, then starts the Vite client
 - `npm run typecheck` validates TypeScript across all workspaces
 - `npm run build` produces distributable output for shared, AI adapter, server, and client
+- `npm run build:client` builds only the shared package and Vite client for Vercel
 
 ## Controls
 
@@ -79,6 +80,27 @@ http://localhost:2567/health
 ## CI
 
 GitHub Actions runs `bun install --frozen-lockfile`, `npm run typecheck`, and `npm run build` on pushes to `main` and on pull requests.
+
+## Vercel Deployment
+
+This repository should be deployed to Vercel as a frontend-only project. The Vite client can run on Vercel, but the Colyseus server in `apps/server` uses long-lived WebSocket connections and should be hosted on a platform that supports a persistent Node.js process.
+
+The root `vercel.json` is already configured to:
+
+- install dependencies with Bun
+- build only the client via `npm run build:client`
+- publish `apps/client/dist`
+
+Set `VITE_WORLD_SERVER_URL` in the Vercel project environment variables to the public URL of your deployed game server. Use `apps/client/.env.example` as the local template.
+
+To enable GitHub auto deploy:
+
+1. Import this repository into Vercel as a new project
+2. Keep the Production Branch as `main`
+3. Add `VITE_WORLD_SERVER_URL` for Preview and Production environments
+4. Push to GitHub and let Vercel build on every commit
+
+If this is a private GitHub organization repository, check your Vercel plan and team setup before relying on auto deploy.
 
 ## Suggested Next Step
 

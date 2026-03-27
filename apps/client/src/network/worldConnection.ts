@@ -17,6 +17,11 @@ export async function connectToWorld(
 }
 
 export function getWorldServerUrl(): string {
+  const configuredUrl = getConfiguredServerUrl();
+  if (configuredUrl) {
+    return configuredUrl;
+  }
+
   if (typeof window === "undefined") {
     return DEFAULT_SERVER_URL;
   }
@@ -29,4 +34,13 @@ export function getWorldServerUrl(): string {
   }
 
   return DEFAULT_SERVER_URL;
+}
+
+function getConfiguredServerUrl(): string | undefined {
+  const value = import.meta.env.VITE_WORLD_SERVER_URL?.trim();
+  if (!value) {
+    return undefined;
+  }
+
+  return value.replace(/\/+$/, "");
 }
