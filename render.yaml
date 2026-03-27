@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: pixel-kl-server
+    runtime: node
+    plan: free
+    autoDeployTrigger: commit
+    buildCommand: npm install && npm run build:server
+    startCommand: npm --workspace @pixel/server run start
+    healthCheckPath: /health
+    buildFilter:
+      paths:
+        - apps/server/**
+        - packages/shared/**
+        - packages/ai-adapter/**
+        - package.json
+        - bun.lock
+        - tsconfig.base.json
+        - render.yaml

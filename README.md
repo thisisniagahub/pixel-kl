@@ -108,6 +108,24 @@ The workflows live in:
 
 If this is a private GitHub organization repository, check your Vercel plan and team setup before relying on auto deploy.
 
+## Render Deployment
+
+The backend server is ready for Render via the root `render.yaml` Blueprint. It deploys `apps/server` as a Node web service, runs the health check on `/health`, and rebuilds automatically when server or shared backend files change.
+
+Render uses:
+
+- `npm install && npm run build:server` as the build command
+- `npm --workspace @pixel/server run start` as the start command
+- `render.yaml` build filters so frontend-only changes do not redeploy the backend unnecessarily
+
+Deploy the backend with this Blueprint link:
+
+```text
+https://dashboard.render.com/blueprint/new?repo=https://github.com/thisisniagahub/pixel-kl
+```
+
+After Render creates the service, copy the public backend URL, for example `https://pixel-kl-server.onrender.com`, into Vercel as `VITE_WORLD_SERVER_URL` for Preview and Production.
+
 ## Suggested Next Step
 
 Add chat bubbles over players and NPCs, then introduce a lightweight interaction queue for props and mission hooks.

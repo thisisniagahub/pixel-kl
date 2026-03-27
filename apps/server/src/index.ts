@@ -35,6 +35,6 @@ const aiAdapter = new MockOpenClawAdapter();
 
 await gameServer.listen(port);
 
-console.log(`[pixel-server] listening on http://localhost:${port}`);
+console.log(`[pixel-server] listening on port ${port}`);
 console.log(`[pixel-server] room "${WORLD_ROOM_NAME}" is registered`);
 console.log(`[pixel-server] ai mode: ${aiAdapter.kind}`);
