@@ -20,7 +20,12 @@ packages/
   shared/
 ```
 
-## Getting started
+## Prerequisites
+
+- Node.js 20 LTS
+- Bun 1.3.6 or newer
+
+## Getting Started
 
 1. Install dependencies from the repo root:
 
@@ -40,6 +45,20 @@ npm run dev:server
 npm run dev:client
 ```
 
+4. Open the client in your browser and confirm the server health route:
+
+```text
+http://localhost:5173
+http://localhost:2567/health
+```
+
+## Development Commands
+
+- `npm run dev:server` starts the Colyseus + Express backend in watch mode
+- `npm run dev:client` builds shared code, then starts the Vite client
+- `npm run typecheck` validates TypeScript across all workspaces
+- `npm run build` produces distributable output for shared, AI adapter, server, and client
+
 ## Controls
 
 - `Arrow keys` or `WASD` to move
@@ -57,6 +76,10 @@ npm run dev:client
 - shared package centralizes room names, event names, world sizes, movement contracts, and customization options
 - AI package exposes a mockable OpenClaw adapter interface while NPC dialogue remains hand-written for now
 
-## Suggested next step
+## CI
+
+GitHub Actions runs `bun install --frozen-lockfile`, `npm run typecheck`, and `npm run build` on pushes to `main` and on pull requests.
+
+## Suggested Next Step
 
 Add chat bubbles over players and NPCs, then introduce a lightweight interaction queue for props and mission hooks.
