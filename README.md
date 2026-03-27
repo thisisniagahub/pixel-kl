@@ -98,13 +98,7 @@ To enable GitHub auto deploy:
 1. Import this repository into Vercel as a new project
 2. Keep the Production Branch as `main`
 3. Add `VITE_WORLD_SERVER_URL` for Preview and Production environments
-4. Create GitHub repository secrets: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID`
-5. Push to GitHub and let Actions deploy preview branches and `main` automatically
-
-The workflows live in:
-
-- `.github/workflows/vercel-preview.yml`
-- `.github/workflows/vercel-production.yml`
+4. Push to GitHub and let Vercel deploy from its native Git integration
 
 If this is a private GitHub organization repository, check your Vercel plan and team setup before relying on auto deploy.
 
